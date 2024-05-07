@@ -173,7 +173,26 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('n', '<leader>t', '<CMD>lua require("FTerm").toggle()<CR>', { desc = 'Open terminal' })
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
+-- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+-- Navigate tabs
+vim.keymap.set('n', '<right>', ':tabnext<CR>', { desc = 'Next tab' })
+vim.keymap.set('n', '<left>', ':tabprevious<CR>', { desc = 'Previous tab' })
+vim.keymap.set('n', '1', ':tabn 1<CR>', { desc = 'Go to tab 1' })
+vim.keymap.set('n', '2', ':tabn 2<CR>', { desc = 'Go to tab 2' })
+vim.keymap.set('n', '3', ':tabn 3<CR>', { desc = 'Go to tab 3' })
+vim.keymap.set('n', '4', ':tabn 4<CR>', { desc = 'Go to tab 4' })
+vim.keymap.set('n', '5', ':tabn 5<CR>', { desc = 'Go to tab 5' })
+vim.keymap.set('n', '6', ':tabn 6<CR>', { desc = 'Go to tab 6' })
+vim.keymap.set('n', '7', ':tabn 7<CR>', { desc = 'Go to tab 7' })
+vim.keymap.set('n', '8', ':tabn 8<CR>', { desc = 'Go to tab 8' })
+vim.keymap.set('n', '9', ':tabn 9<CR>', { desc = 'Go to tab 9' })
+
+-- program control
+vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save file' })
+vim.keymap.set('n', '<C-x>', ':qa<CR>', { desc = 'Save file' })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -864,6 +883,10 @@ require('lazy').setup({
     end,
   },
 
+  -- NOTE: my plugins
+  { 'lunacookies/vim-colors-xcode', config = function() end },
+  { 'numToStr/FTerm.nvim' },
+
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
@@ -873,11 +896,11 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -908,5 +931,7 @@ require('lazy').setup({
   },
 })
 
+vim.cmd [[colorscheme xcodedarkhc]]
+
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+-- vim: ts=1 sts=2 sw=2 et
