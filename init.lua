@@ -192,7 +192,7 @@ vim.keymap.set('n', '9', ':tabn 9<CR>', { desc = 'Go to tab 9' })
 
 -- program control
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save file' })
-vim.keymap.set('n', '<C-x>', ':qa<CR>', { desc = 'Save file' })
+vim.keymap.set('n', '<C-x>', ':q<CR>', { desc = 'Save file' })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -377,6 +377,11 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
+        defaults = {
+          file_ignore_patterns = {
+            './node_modules',
+          },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
@@ -885,7 +890,20 @@ require('lazy').setup({
 
   -- NOTE: my plugins
   { 'lunacookies/vim-colors-xcode', config = function() end },
+  {
+    'AlexvZyl/nordic.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('nordic').load()
+    end,
+  },
   { 'numToStr/FTerm.nvim' },
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
+  },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -930,8 +948,6 @@ require('lazy').setup({
     },
   },
 })
-
-vim.cmd [[colorscheme xcodedarkhc]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=1 sts=2 sw=2 et
