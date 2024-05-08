@@ -180,15 +180,17 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()
 -- Navigate tabs
 vim.keymap.set('n', '<right>', ':tabnext<CR>', { desc = 'Next tab' })
 vim.keymap.set('n', '<left>', ':tabprevious<CR>', { desc = 'Previous tab' })
-vim.keymap.set('n', '1', ':tabn 1<CR>', { desc = 'Go to tab 1' })
-vim.keymap.set('n', '2', ':tabn 2<CR>', { desc = 'Go to tab 2' })
-vim.keymap.set('n', '3', ':tabn 3<CR>', { desc = 'Go to tab 3' })
-vim.keymap.set('n', '4', ':tabn 4<CR>', { desc = 'Go to tab 4' })
-vim.keymap.set('n', '5', ':tabn 5<CR>', { desc = 'Go to tab 5' })
-vim.keymap.set('n', '6', ':tabn 6<CR>', { desc = 'Go to tab 6' })
-vim.keymap.set('n', '7', ':tabn 7<CR>', { desc = 'Go to tab 7' })
-vim.keymap.set('n', '8', ':tabn 8<CR>', { desc = 'Go to tab 8' })
-vim.keymap.set('n', '9', ':tabn 9<CR>', { desc = 'Go to tab 9' })
+vim.keymap.set('n', '<up>', ':m -2<CR>', { desc = 'Move line up' })
+vim.keymap.set('n', '<down>', ':m +1<CR>', { desc = 'Move line down' })
+-- vim.keymap.set('n', '1', ':tabn 1<CR>', { desc = 'Go to tab 1' })
+-- vim.keymap.set('n', '2', ':tabn 2<CR>', { desc = 'Go to tab 2' })
+-- vim.keymap.set('n', '3', ':tabn 3<CR>', { desc = 'Go to tab 3' })
+-- vim.keymap.set('n', '4', ':tabn 4<CR>', { desc = 'Go to tab 4' })
+-- vim.keymap.set('n', '5', ':tabn 5<CR>', { desc = 'Go to tab 5' })
+-- vim.keymap.set('n', '6', ':tabn 6<CR>', { desc = 'Go to tab 6' })
+-- vim.keymap.set('n', '7', ':tabn 7<CR>', { desc = 'Go to tab 7' })
+-- vim.keymap.set('n', '8', ':tabn 8<CR>', { desc = 'Go to tab 8' })
+-- vim.keymap.set('n', '9', ':tabn 9<CR>', { desc = 'Go to tab 9' })
 
 -- program control
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save file' })
@@ -380,6 +382,7 @@ require('lazy').setup({
         defaults = {
           file_ignore_patterns = {
             './node_modules',
+            './dist',
           },
         },
         -- pickers = {}
@@ -890,14 +893,14 @@ require('lazy').setup({
 
   -- NOTE: my plugins
   { 'lunacookies/vim-colors-xcode', config = function() end },
-  {
-    'AlexvZyl/nordic.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('nordic').load()
-    end,
-  },
+  -- {
+  --   'AlexvZyl/nordic.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require('nordic').load()
+  --   end,
+  -- },
   { 'numToStr/FTerm.nvim' },
   {
     'pmizio/typescript-tools.nvim',
@@ -919,7 +922,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
@@ -948,6 +951,9 @@ require('lazy').setup({
     },
   },
 })
+
+vim.cmd 'colorscheme xcodedarkhc'
+vim.cmd 'set relativenumber'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=1 sts=2 sw=2 et
