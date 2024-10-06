@@ -594,7 +594,7 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -602,7 +602,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
+        tsserver = {},
         --
 
         lua_ls = {
@@ -892,6 +892,19 @@ require('lazy').setup({
   },
 
   -- NOTE: my plugins
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    opts = {
+      config = function()
+        local nullls = require 'null-ls'
+        nullls.setup {
+          sources = {
+            nullls.builtins.diagnostics.eslint,
+          },
+        }
+      end,
+    },
+  },
   { 'lunacookies/vim-colors-xcode', config = function() end },
   -- {
   --   'AlexvZyl/nordic.nvim',
@@ -954,6 +967,10 @@ require('lazy').setup({
 
 vim.cmd 'colorscheme xcodedarkhc'
 vim.cmd 'set relativenumber'
+
+vim.opt.tabstop = 8 -- Always 8 (see :h tabstop)
+vim.opt.softtabstop = 2 -- What you expecting
+vim.opt.shiftwidth = 2 -- What you expecting
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=1 sts=2 sw=2 et
