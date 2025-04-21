@@ -25,7 +25,7 @@ return {
                 allFeatures = false,
               },
               diagnostics = {
-                disabled = {"inactive-code"},
+                disabled = { 'inactive-code' },
               },
             },
           },
@@ -33,6 +33,7 @@ return {
       },
     },
   },
+  { 'augmentcode/augment.vim' },
   -- {
   --   'simrat39/rust-tools.nvim',
   --   config = function()
