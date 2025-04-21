@@ -23,6 +23,7 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    'mxsdev/nvim-dap-vscode-js',
   },
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
@@ -142,6 +143,24 @@ return {
         -- On Windows delve must be run attached or it crashes.
         -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
         detached = vim.fn.has 'win32' == 0,
+      },
+    }
+    require('dap-vscode-js').setup {
+      debugger_path = '/Users/brayden.cloud/tools/vscode-js-debug/',
+      adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
+    }
+    require('dap').configurations['typescript'] = {
+      {
+        name = 'Launch',
+        type = 'pwa-node',
+        request = 'launch',
+        program = '${file}',
+        rootPath = '${workspaceFolder}',
+        cwd = '${workspaceFolder}',
+        sourceMaps = true,
+        skipFiles = { '<node_internals>/**' },
+        protocol = 'inspector',
+        console = 'integratedTerminal',
       },
     }
   end,

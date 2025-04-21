@@ -11,8 +11,9 @@ return {
       config = function()
         require('toggleterm').setup {
           open_mapping = [[<c-\>]],
+          insert_mappings = true,
+          direction = 'tab',
         }
-        insert_mappings = true
       end,
     },
     {
@@ -25,7 +26,7 @@ return {
                 allFeatures = false,
               },
               diagnostics = {
-                disabled = {"inactive-code"},
+                disabled = { 'inactive-code' },
               },
             },
           },
@@ -33,6 +34,12 @@ return {
       },
     },
   },
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
+  },
+  { 'echasnovski/mini.nvim', version = '*' },
   -- {
   --   'simrat39/rust-tools.nvim',
   --   config = function()
